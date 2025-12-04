@@ -1,6 +1,7 @@
 # Rashon Poole
 
 _Researcher in Human-Centered AI_
+
 _Email: rashonp@umich.edu_
 
 ---
