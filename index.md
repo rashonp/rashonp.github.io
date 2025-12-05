@@ -2,7 +2,7 @@
 
 _Researcher in Human-Centered AI_
 
-_Email: rashonp@umich.edu_
+**Email**: rashonp@umich.edu
 
 ---
 
