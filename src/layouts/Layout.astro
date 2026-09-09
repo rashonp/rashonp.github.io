@@ -1,0 +1,27 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+interface Props { title?: string; description?: string; wide?: boolean }
+const { title, description = 'Rashon Poole is a PhD student at the University of Michigan researching human-centered AI, personalized language models, and AI ethics.' } = Astro.props;
+const navigation = [['/', 'Home'], ['/research/', 'Research'], ['/cv/', 'CV']];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={description} />
+  <meta name="theme-color" content="#163e46" />
+  <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+  <title>{title ? `${title} | ${site.name}` : site.name}</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><div class="header-inner">
+    <a class="brand" href="/">Rashon Poole</a>
+    <nav aria-label="Main navigation">{navigation.map(([href, label]) => <a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>{label}</a>)}</nav>
+  </div></header>
+  <main id="main" class:list={['container', { 'container-wide': Astro.props.wide }]} tabindex="-1"><slot /></main>
+  <footer class="container site-footer"><p>Rashon Poole <span>· University of Michigan</span></p><div><a href={'mailto:' + site.email}>Email</a><a href={site.linkedin}>LinkedIn</a><a href={site.orcid}>ORCID</a></div></footer>
+</body>
+</html>

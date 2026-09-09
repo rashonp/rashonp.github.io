@@ -29,9 +29,15 @@ I am currently involved in the following research areas:
 - **Area: AI Ethics and Policy**  
   Accountability, Transparency, Governance
 
+<div class="research-card" markdown="1">
+
 #### Most Recent Project: Personalized Value-Aligned Language Models
 
 In this project, I am building and evaluating language models that adapt their behavior to an individual user’s personal values, as measured by Schwartz’s value survey and related scenario-based instruments. We focus on combining psychometric value measurements (PVQ-style items and social dilemma scenarios) with prompt engineering and activation steering techniques to condition model outputs on a user’s value profile. The goal is to understand when and how aligning models to users’ values improves usefulness without sacrificing capability.
+
+[Read the paper (PDF)](/Personalized_Alignment_of_Language_Models_with_Human_Value_Profiles__arxiv_.pdf){: .paper-link }
+
+</div>
 
 ---
 

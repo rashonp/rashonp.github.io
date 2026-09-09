@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PaperCard from '../components/PaperCard.astro';
+import AIBiasCard from '../components/AIBiasCard.astro';
+---
+<Layout title="Research">
+  <div class="page-intro"><h1>Research</h1><p class="intro">Personalized language models, human values, and AI ethics.</p></div>
+  <section class="section" aria-labelledby="directions"><div class="section-heading"><h2 id="directions">Research interests</h2></div><div class="card-grid">
+    <article class="card"><h3>Personalized language models</h3><p>Value alignment and personalization: connecting human value profiles with the behavior of large language models.</p></article>
+    <article class="card"><h3>AI ethics and policy</h3><p>Accountability, transparency, and governance, with attention to how AI systems affect people and communities.</p></article>
+  </div></section>
+  <PaperCard />
+  <AIBiasCard />
+</Layout>

@@ -1,0 +1,20 @@
+---
+import { site } from '../data/site';
+---
+<article class="paper-card">
+  <h2>Personalized Alignment of Language Models with Human Value Profiles</h2>
+  <p class="authors">Rashon Poole and Farnaz Jahanbakhsh · University of Michigan</p>
+  <p><strong>Accepted to EMNLP 2026 (Main)</strong></p>
+  <figure class="system-diagram">
+    <a href="/system_diagram.png" aria-label="View the system diagram at full size">
+      <img src="/system_diagram.png" width="2400" height="605" loading="lazy" alt="System overview: a scenario and user value profile determine relevant values, which guide activation steering or LoRA adapters to generate a value-aligned response." />
+    </a>
+    <figcaption>System overview. Select the image to view it at full size.</figcaption>
+  </figure>
+  <p>Advice and decision-making often involve trade-offs between reasonable values, with no single right answer. Yet most AI assistants follow shared priorities shaped by annotator judgments. We ask whether an LLM can instead adapt to the values that matter to a particular user in a particular situation.</p>
+  <p>Using Schwartz’s framework of 19 human values, we represent users’ relative priorities and identify values relevant to both the user and the query. We personalize responses through prompting, activation steering, and LoRA-DPO.</p>
+  <p>We find that focusing on a small set of query-relevant values outperforms using the full user profile. Alignment is weaker for personally focused values, such as achievement, status, and resources, than for socially focused values, such as benevolence and universalism. Combining prompting with activation steering or LoRA-DPO produces stronger alignment than either approach alone.</p>
+  <div class="actions">
+    <a class="button" href={site.paper}>Read the paper (PDF)</a>
+  </div>
+</article>
