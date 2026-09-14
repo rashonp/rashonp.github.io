@@ -1,0 +1,169 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { site } from '../../data/site';
+---
+<Layout
+  title="Personalized Alignment of Language Models with Human Value Profiles"
+  description="Research on personalizing language-model responses around the values that matter to an individual user and their current situation."
+  wide
+>
+  <article class="project-page">
+    <header class="project-hero">
+      <a class="back-link" href="/research/">← Research</a>
+      <p class="eyebrow project-kicker">EMNLP 2026 · Main Track</p>
+      <h1>Personalized Alignment of Language Models with Human Value Profiles</h1>
+      <p class="project-dek">Personalizing language-model responses around the values that matter to an individual user in a particular situation.</p>
+      <p class="authors project-authors">Rashon Poole and Farnaz Jahanbakhsh · University of Michigan</p>
+      <div class="actions">
+        <a class="button button-primary" href={site.paper}>Read the paper (PDF)</a>
+        <a class="text-link" href="#findings">View key findings ↓</a>
+      </div>
+    </header>
+
+    <section class="qualitative-example" aria-labelledby="qualitative-title">
+      <div class="example-heading">
+        <div>
+          <p class="section-label">A qualitative example</p>
+          <h2 id="qualitative-title">The same situation, viewed through different values</h2>
+        </div>
+        <p>Adapted from Appendix A.11. Colored underlines identify language associated with the values emphasized in each response.</p>
+      </div>
+
+      <div class="scenario-card">
+        <p class="example-label">Scenario</p>
+        <p>A photographer is offered a six-month, fully funded, self-directed residency to document street vendors. Taking it would advance an independent creative career, but leaving would disrupt medication drop-offs and rides for older neighbors, as well as care for a sister’s newborn twins. Others could step in, though the transition may cause real harm. Staying could mean deferring or narrowing a rare opportunity.</p>
+        <p class="scenario-question">How should they think about what matters most?</p>
+      </div>
+
+      <div class="profile-note">
+        <span class="example-label">User profile</span>
+        <p>This user places especially high importance on achievement, autonomy, and access to resources. Dependability is a moderate priority, while caring is closer to their average. Because the residency directly engages professional ambition and independent choice, the system selects <strong>Achievement</strong> and <strong>Self-Direction</strong> for this situation.</p>
+      </div>
+
+      <div class="value-legend" aria-label="Value annotation legend">
+        <span><i class="legend-line value-care" aria-hidden="true"></i>Benevolence: caring &amp; dependability</span>
+        <span><i class="legend-line value-achievement" aria-hidden="true"></i>Achievement</span>
+        <span><i class="legend-line value-direction" aria-hidden="true"></i>Self-Direction</span>
+      </div>
+
+      <div class="response-grid">
+        <article class="response-card response-baseline">
+          <header><p>Base model</p><span>Recommends staying</span></header>
+          <div class="response-values"><span class="value-tag tag-care">Benevolence</span><span class="value-tag tag-care">Dependability</span></div>
+          <blockquote>
+            <p>Stay closely involved at home for now. Your <span class="value-phrase value-care">neighbors and family rely on your consistent care and support</span>, and preserving their <span class="value-phrase value-care">stability and well-being</span> should take priority over the residency.</p>
+          </blockquote>
+        </article>
+
+        <article class="response-card response-combined">
+          <header><p>LoRA-DPO</p><span>Recommends the residency</span></header>
+          <div class="response-values"><span class="value-tag tag-achievement">Achievement</span><span class="value-tag tag-direction">Self-Direction</span></div>
+          <blockquote>
+            <p>Take the residency opportunity. While your current commitments are important, this chance to <span class="value-phrase value-achievement">create a significant body of work</span> under <span class="value-phrase value-direction">minimal supervision</span> offers <span class="value-phrase value-achievement">long-term benefits for your career</span>.</p>
+            <p>Although it may require some initial adjustments in your personal life, it’s an opportunity to <span class="value-phrase value-achievement">grow professionally</span> while potentially leveraging the skills and networks developed during the residency to support your neighborhood initiatives in the future.</p>
+          </blockquote>
+        </article>
+      </div>
+    </section>
+
+    <section class="narrative-section" aria-labelledby="motivation">
+      <p class="section-label">Motivation</p>
+      <h2 id="motivation">Many questions have no single objectively right answer</h2>
+      <div class="narrative-copy">
+        <p>People use AI assistants for much more than factual questions. They also turn to them for advice, help weighing options, and decision-making. Many of these queries involve trade-offs between different reasonable values.</p>
+      </div>
+      <div class="question-examples" aria-label="Examples of value-sensitive questions">
+        <blockquote>
+          <p>“Should I take a career opportunity that means spending less time with family?”</p>
+          <div class="question-values" aria-label="Value tension: Achievement versus Benevolence and caring">
+            <span class="value-tag tag-achievement">Achievement</span>
+            <span class="value-versus" aria-hidden="true">↔</span>
+            <span class="value-tag tag-care">Benevolence · Caring</span>
+          </div>
+        </blockquote>
+        <blockquote>
+          <p>“Should I move abroad or stay close to family?”</p>
+          <div class="question-values" aria-label="Value tension: Stimulation and Hedonism versus Benevolence and caring">
+            <span class="value-tag tag-direction">Stimulation · Hedonism</span>
+            <span class="value-versus" aria-hidden="true">↔</span>
+            <span class="value-tag tag-care">Benevolence · Caring</span>
+          </div>
+        </blockquote>
+      </div>
+      <div class="narrative-copy">
+        <p>A useful response should account for the user’s values and which of them are relevant to the situation. Yet most models are aligned toward a set of preferred behaviors shaped by annotator judgments, leading them to give similar answers regardless of who asks.</p>
+      </div>
+      <p class="project-question">What if a model could be aligned to a set of values—based on the user or another legitimate process—rather than relying on a fixed set of priorities?</p>
+    </section>
+
+    <section class="narrative-section" aria-labelledby="approach">
+      <p class="section-label">Research question</p>
+      <h2 id="approach">Can an LLM adapt to the values that matter to a particular user in a particular situation?</h2>
+      <div class="approach-layout">
+        <div class="narrative-copy">
+          <p>We draw on Schwartz’s theory of human values, which organizes 19 values such as achievement, benevolence, and conformity. This gives each user a profile reflecting their relative priorities across values.</p>
+          <p>For each query, we identify which values are important to both the user and the context. Focusing on the relevant part of the profile lets the model respond to the value trade-off at hand without treating every user preference as equally important in every situation.</p>
+        </div>
+        <figure class="project-figure value-figure">
+          <a href="/papers/personalized-alignment/schwartz-values.png" aria-label="Open the Schwartz value circumplex at full size">
+            <img src="/papers/personalized-alignment/schwartz-values.png" width="640" height="641" loading="lazy" alt="Schwartz value circumplex organizing 19 values into openness to change, self-enhancement, conservation, and self-transcendence." />
+          </a>
+          <figcaption>Schwartz’s 19-value circumplex. Nearby values share motivations, while values farther apart are more likely to conflict.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <figure class="project-figure project-figure-wide pipeline-figure">
+      <a href="/system_diagram.png" aria-label="Open the full-size system overview">
+        <img src="/system_diagram.png" width="2400" height="605" loading="lazy" alt="Value-conditioned response pipeline: a scenario and user profile feed a relevance estimator; selected values guide activation steering or LoRA adapters; the model generates a value-aligned response." />
+      </a>
+      <figcaption>The response-generation pipeline: identify values relevant to the scenario and user, apply a steering method, and generate a tailored response.</figcaption>
+    </figure>
+
+    <section class="narrative-section" aria-labelledby="methods">
+      <p class="section-label">Personalization methods</p>
+      <h2 id="methods">Three ways to steer responses toward relevant values</h2>
+      <div class="method-list">
+        <article><span>01</span><h3>Activation steering</h3><p>Injects value-specific directions into the model’s hidden states during generation.</p></article>
+        <article><span>02</span><h3>LoRA-DPO</h3><p>Uses value-specific adapters trained from contrasting responses that express or do not express a target value.</p></article>
+        <article><span>03</span><h3>Prompting</h3><p>Names a small set of values to prioritize—and relevant values to deprioritize—for the current query.</p></article>
+      </div>
+    </section>
+
+    <section class="narrative-section findings-section" id="findings" aria-labelledby="results">
+      <p class="section-label">Key findings</p>
+      <h2 id="results">What we find</h2>
+      <div class="finding-list">
+        <article class="finding-row">
+          <span class="finding-number">01</span>
+          <div><h3>More user information is not necessarily better</h3><p>Conditioning on a user’s full value profile performs worse than focusing on a small set of values that matter for the current query.</p></div>
+        </article>
+        <article class="finding-row">
+          <span class="finding-number">02</span>
+          <div><h3>Some values are harder to steer toward than others</h3><p>Across models and methods, alignment is weaker for personally focused values such as achievement, status, and resources than for socially focused values such as benevolence and universalism.</p></div>
+        </article>
+        <figure class="project-figure results-figure">
+          <a href="/papers/personalized-alignment/spearman-by-value.png" aria-label="Open the alignment results heatmap at full size">
+            <img src="/papers/personalized-alignment/spearman-by-value.png" width="1058" height="655" loading="lazy" alt="Heatmap of profile alignment by dominant user value and personalization method. Socially focused values generally align more strongly than personally focused values." />
+          </a>
+          <figcaption>Profile alignment by a user’s dominant value. Higher values indicate that the values expressed in the model response more closely match the user’s value profile.</figcaption>
+        </figure>
+        <article class="finding-row">
+          <span class="finding-number">03</span>
+          <div><h3>Prompting and model-level interventions work best together</h3><p>Combining targeted prompting with activation steering or LoRA-DPO produces stronger alignment than either approach alone.</p></div>
+        </article>
+        <article class="finding-row">
+          <span class="finding-number">04</span>
+          <div><h3>Demographics provide little personalization</h3><p>Conditioning on demographic attributes performs only marginally better than the unpersonalized base model.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="project-cta">
+      <p class="section-label">Paper</p>
+      <h2>Personalized Alignment of Language Models with Human Value Profiles</h2>
+      <p>Read the full paper for the study design, evaluation, human validation, and appendices.</p>
+      <a class="button button-primary" href={site.paper}>Read the paper (PDF)</a>
+    </footer>
+  </article>
+</Layout>

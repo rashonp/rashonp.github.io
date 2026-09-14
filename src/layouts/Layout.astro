@@ -19,7 +19,10 @@ const navigation = [['/', 'Home'], ['/research/', 'Research'], ['/cv/', 'CV']];
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header"><div class="header-inner">
     <a class="brand" href="/">Rashon Poole</a>
-    <nav aria-label="Main navigation">{navigation.map(([href, label]) => <a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>{label}</a>)}</nav>
+    <nav aria-label="Main navigation">{navigation.map(([href, label]) => {
+      const isCurrent = href === '/' ? Astro.url.pathname === href : Astro.url.pathname.startsWith(href);
+      return <a href={href} aria-current={isCurrent ? 'page' : undefined}>{label}</a>;
+    })}</nav>
   </div></header>
   <main id="main" class:list={['container', { 'container-wide': Astro.props.wide }]} tabindex="-1"><slot /></main>
   <footer class="container site-footer"><p>Rashon Poole <span>· University of Michigan</span></p><div><a href={'mailto:' + site.email}>Email</a><a href={site.linkedin}>LinkedIn</a><a href={site.orcid}>ORCID</a></div></footer>
