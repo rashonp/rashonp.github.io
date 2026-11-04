@@ -35,7 +35,7 @@ I am currently involved in the following research areas:
 
 In this project, I am building and evaluating language models that adapt their behavior to an individual user’s personal values, as measured by Schwartz’s value survey and related scenario-based instruments. We focus on combining psychometric value measurements (PVQ-style items and social dilemma scenarios) with prompt engineering and activation steering techniques to condition model outputs on a user’s value profile. The goal is to understand when and how aligning models to users’ values improves usefulness without sacrificing capability.
 
-[Read the paper (PDF)](/Personalized_Alignment_of_Language_Models_with_Human_Value_Profiles__arxiv_.pdf){: .paper-link }
+[Read the paper](https://aclanthology.org/2026.emnlp-main.1600/){: .paper-link }
 
 </div>
 
@@ -45,7 +45,7 @@ In this project, I am building and evaluating language models that adapt their b
 
 You can find my most recent CV here:
 
-## **[View my CV](https://drive.google.com/file/d/1mtXXoJbKW7PtXt4pmHhqvJTytSF4geO3/view?usp=sharing)**
+## **[View my CV](/documents/cv.pdf)**
 
 ### Online Profiles
 

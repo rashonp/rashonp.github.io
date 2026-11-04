@@ -29,8 +29,10 @@ to remove the container; installed dependencies remain cached in a named volume.
 - `src/components/PaperCard.astro`: paper description and featured card.
 - `src/data/site.ts`: email, CV, social profiles, and paper link.
 - `src/styles/global.css`: typography, colors, spacing, and responsive layouts.
-- `public/`: files copied unchanged to the published site, including the paper
-  and portrait. The existing PDF URL is preserved.
+- `public/`: files copied unchanged to the published site, including the portrait.
+- `public/documents/`: the CV PDF and research documents.
+  The paper PDF, system diagram PDF, and figures live together in `personalized-alignment/`.
+  Replace `cv.pdf` here to update the CV linked from the site.
 
 Add `.astro` pages in `src/pages/` for new sections, or Markdown pages with a
 `layout: ../layouts/Layout.astro` frontmatter field for writing-heavy pages.
